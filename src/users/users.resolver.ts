@@ -47,7 +47,6 @@ export class UsersResolver {
     @Args("input") input: UserUpdateType) {
     try {
       return await this.usersService.updateUser(user, uid, input);
-
     } catch (e) {
       throw new ApolloError(e);
     }

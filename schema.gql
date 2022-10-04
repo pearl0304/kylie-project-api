@@ -9,6 +9,7 @@ type User {
   photoURL: String
   intro: String
   date_crated: String
+  date_updated: String
   access_token: String
 }
 

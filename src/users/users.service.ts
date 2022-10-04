@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { AuthService } from "../auth/auth.service";
 import * as bcrypt from "bcrypt";
 import { ApolloError } from "apollo-server-express";
+import * as moment from "moment-timezone";
 
 @Injectable()
 export class UsersService {
@@ -80,7 +81,7 @@ export class UsersService {
       const data = {
         ...input,
         password: await bcrypt.hash(password, saltRounds),
-        date_crated: new Date()
+        date_crated: moment().local().format()
       };
 
       const result = await this.userModel.create(data);
@@ -121,7 +122,22 @@ export class UsersService {
       const check_user = await this.userModel.findById({ _id: uid }).exec();
       if (!check_user) throw new ApolloError("There are no user information.");
 
+      const data = {
+        ...input,
+        date_updated: moment().local().format()
+      };
 
+      await this.userModel.findOneAndUpdate(
+        { _id: uid }, { ...data }, { new: true }
+      );
+
+      const result = {
+        uid: uid,
+        email: check_user.email,
+        displayName: input.displayName ? input.displayName : check_user.displayName,
+        ...data
+      };
+      return result;
     } catch (e) {
       throw new ApolloError(e);
     }
