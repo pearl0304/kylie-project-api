@@ -13,15 +13,33 @@ type User {
   access_token: String
 }
 
+type Post {
+  id: ID!
+  uid: ID!
+  title: String!
+  photoURL: String
+  content: String!
+  date_crated: String
+  date_updated: String
+  date_deleted: String
+  is_public: Boolean!
+  deleted: Boolean!
+}
+
 type Query {
   findAll: [User!]!
   findById: User!
+  findAllPosts: [Post!]!
+  findPost(id: ID!): Post!
 }
 
 type Mutation {
   createUser(input: UserInputType!): User!
   login(input: LoginInputType!): User!
   updateUser(uid: ID!, input: UserUpdateType!): User!
+  createPost(input: PostInputType!): Post!
+  updatePost(id: ID!, input: PostInputType!): Post!
+  deletePost(id: ID!): Post!
 }
 
 input UserInputType {
@@ -42,4 +60,12 @@ input UserUpdateType {
   displayName: String
   photoURL: String
   intro: String
+}
+
+input PostInputType {
+  uid: ID!
+  title: String!
+  photoURL: String
+  content: String!
+  is_public: Boolean!
 }
