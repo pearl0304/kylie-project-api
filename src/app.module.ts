@@ -5,7 +5,6 @@ import { UsersModule } from "./users/users.module";
 import { AuthModule } from "./auth/auth.module";
 import { ConfigModule } from "@nestjs/config";
 import { PostsModule } from "./posts/posts.module";
-import { AuthorsModule } from './authors/authors.module';
 import { CommentsModule } from './comments/comments.module';
 
 @Module({
@@ -31,7 +30,6 @@ import { CommentsModule } from './comments/comments.module';
     UsersModule,
     AuthModule,
     PostsModule,
-    AuthorsModule,
     CommentsModule
   ],
   controllers: [],
