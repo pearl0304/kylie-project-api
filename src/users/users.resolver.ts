@@ -1,5 +1,5 @@
 import { UseGuards } from "@nestjs/common";
-import { Query, Resolver, Args, Mutation, ID, Context } from "@nestjs/graphql";
+import { Query, Resolver, Args, Mutation, ID } from "@nestjs/graphql";
 import { User, UserInputType, LoginInputType, UserUpdateType } from "../schemas/user.schema";
 import { UsersService } from "./users.service";
 import { ApolloError } from "apollo-server-express";

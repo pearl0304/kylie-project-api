@@ -27,11 +27,28 @@ type Post {
   deleted: Boolean!
 }
 
+type Author {
+  id: String!
+  firstName: String
+  lastName: String
+  posts: [Post]!
+}
+
+type Comment {
+  id: ID!
+  uid: ID!
+  writer: User!
+  postId: ID!
+  comment: String!
+  date_created: String!
+}
+
 type Query {
   findAll: [User!]!
   findById: User!
   findAllPosts: [Post!]!
   findPost(id: ID!): Post!
+  author(id: String!): Author!
 }
 
 type Mutation {
@@ -41,6 +58,7 @@ type Mutation {
   createPost(input: PostInputType!): Post!
   updatePost(id: ID!, input: PostInputType!): Post!
   deletePost(id: ID!): Post!
+  createComment(input: CommentInputType!): Comment!
 }
 
 input UserInputType {
@@ -69,4 +87,10 @@ input PostInputType {
   photoURL: String
   content: String!
   is_public: Boolean!
+}
+
+input CommentInputType {
+  uid: ID!
+  postId: ID!
+  comment: String!
 }

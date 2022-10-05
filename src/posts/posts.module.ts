@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { PostsService } from "./posts.service";
-import { PostsResolver } from "./posts.reservler";
+import { PostsResolver } from "./posts.resolver";
 import { DatabaseModule } from "../database.module";
 import { PostsProviders } from "./posts.providers";
 import { UsersModule } from "../users/users.module";
