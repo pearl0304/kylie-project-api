@@ -26,19 +26,19 @@ export class User extends Document {
   displayName: string;
 
   @Field(() => String, { nullable: true })
-  photoURL: string;
+  photoURL?: string;
 
   @Field(() => String, { nullable: true })
-  intro: string;
+  intro?: string;
 
   @Field(() => String, { nullable: true })
-  date_crated: string;
+  date_crated?: string;
 
   @Field(() => String, { nullable: true })
-  date_updated: string;
+  date_updated?: string;
 
   @Field(() => String, { nullable: true })
-  access_token: string;
+  access_token?: string;
 
   password: string;
 }
@@ -55,10 +55,10 @@ export class UserInputType {
   displayName: string;
 
   @Field({ nullable: true })
-  photoURL: string;
+  photoURL?: string;
 
   @Field({ nullable: true })
-  intro: string;
+  intro?: string;
 
   @Field()
   password1: string;
@@ -84,11 +84,11 @@ export class LoginInputType {
 export class UserUpdateType {
   @Length(2, 8)
   @Field({ nullable: true })
-  displayName: string;
+  displayName?: string;
 
   @Field({ nullable: true })
-  photoURL: string;
+  photoURL?: string;
 
   @Field({ nullable: true })
-  intro: string;
+  intro?: string;
 }

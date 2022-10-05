@@ -27,19 +27,19 @@ export class Post extends Document {
   title: string;
 
   @Field(() => String, { nullable: true })
-  photoURL: string;
+  photoURL?: string;
 
   @Field(() => String)
-  content: string;
+  content?: string;
 
   @Field(() => String, { nullable: true })
-  date_crated: string;
+  date_crated?: string;
 
   @Field(() => String, { nullable: true })
-  date_updated: string;
+  date_updated?: string;
 
   @Field(() => String, { nullable: true })
-  date_deleted: string;
+  date_deleted?: string;
 
   @Field(() => Boolean)
   is_public: boolean;
@@ -58,7 +58,7 @@ export class PostInputType {
   title: string;
 
   @Field(() => String, { nullable: true })
-  photoURL: string;
+  photoURL?: string;
 
   @Field(() => String)
   content: string;
