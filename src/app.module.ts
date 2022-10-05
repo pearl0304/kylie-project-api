@@ -14,6 +14,7 @@ import { PostsModule } from "./posts/posts.module";
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      debug: true,
       installSubscriptionHandlers: true,
       autoSchemaFile: "schema.gql",
       context: ({ req, connection }) => {
