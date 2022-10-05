@@ -1,6 +1,7 @@
 import { Field, ID, ObjectType, ArgsType, InputType } from "@nestjs/graphql";
 import * as mongoose from "mongoose";
 import { Document } from "mongoose";
+import { User } from "./user.schema";
 
 export const PostSchema = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
@@ -22,6 +23,9 @@ export class Post extends Document {
 
   @Field(() => ID)
   uid: string;
+
+  @Field(type => User)
+  writer: User;
 
   @Field(() => String)
   title: string;

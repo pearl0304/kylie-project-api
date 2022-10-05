@@ -1,17 +1,19 @@
 import { UseGuards } from "@nestjs/common";
-import { Query, Resolver, Args, Mutation, ID, Context } from "@nestjs/graphql";
+import { Query, Resolver, Args, Mutation, ID, ResolveField, Parent } from "@nestjs/graphql";
 import { User } from "../schemas/user.schema";
 import { Post, PostInputType } from "../schemas/post.schema";
 import { PostsService } from "./posts.service";
 import { ApolloError } from "apollo-server-express";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { CurrentUser } from "../user.decorator";
-import { type } from "os";
+import { UsersService } from "../users/users.service";
 
-@Resolver()
+
+@Resolver(() => Post)
 export class PostsResolver {
   constructor(
-    private postsService: PostsService
+    private postsService: PostsService,
+    private readonly usersService: UsersService
   ) {
   }
 
@@ -70,6 +72,17 @@ export class PostsResolver {
   ) {
     try {
       return await this.postsService.deletePost(user, id);
+    } catch (e) {
+      throw new ApolloError(e);
+    }
+  }
+
+  // sub type
+  @ResolveField()
+  async writer(@Parent() post: Post) {
+    try {
+      const { uid } = post;
+      return await this.usersService.findUserById(uid);
     } catch (e) {
       throw new ApolloError(e);
     }

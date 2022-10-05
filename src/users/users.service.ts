@@ -63,6 +63,18 @@ export class UsersService {
     }
   }
 
+  async findUserById(id: string): Promise<User | undefined> {
+    try {
+
+      const proc = await this.userModel.findOne({ _id: id, deleted: false }).exec();
+      if (!proc) throw new ApolloError("There is no information of user");
+      proc.uid = proc._id;
+
+      return proc;
+    } catch (e) {
+      throw new ApolloError(e);
+    }
+  }
 
   async createUser(input: UserInputType) {
     try {

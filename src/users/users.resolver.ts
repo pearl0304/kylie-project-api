@@ -6,7 +6,7 @@ import { ApolloError } from "apollo-server-express";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { CurrentUser } from "../user.decorator";
 
-@Resolver()
+@Resolver(() => User)
 export class UsersResolver {
   constructor(private usersService: UsersService) {
   }
