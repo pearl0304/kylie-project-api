@@ -1,6 +1,5 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import * as csurf from "csurf";
 import * as cookieParser from "cookie-parser";
 import { HttpExceptionFilter } from "./http.exception.filter";
 
