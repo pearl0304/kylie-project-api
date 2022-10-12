@@ -41,6 +41,7 @@ type Query {
   findById: User!
   findAllPosts: [Post!]!
   findPost(id: ID!): Post!
+  getComment(postId: ID!): [Comment!]!
 }
 
 type Mutation {
@@ -51,6 +52,7 @@ type Mutation {
   updatePost(id: ID!, input: PostInputType!): Post!
   deletePost(id: ID!): Post!
   createComment(input: CommentInputType!): Comment!
+  deleteComment(id: ID!): Comment!
 }
 
 input UserInputType {
